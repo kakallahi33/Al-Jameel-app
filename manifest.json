@@ -1,0 +1,25 @@
+{
+  "short_name": "Al-Jameel",
+  "name": "Al-Jameel Janazah Services",
+  "description": "Al-Jameel Janazah Services Companion",
+  "start_url": "https://kakallahi33.github.io/Al-Jameel-App/",
+  "scope": "https://kakallahi33.github.io/Al-Jameel-App/",
+  "display": "standalone",
+  "background_color": "#18151e",
+  "theme_color": "#260d3d",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://kakallahi33.github.io/Al-Jameel-App/Logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "https://kakallahi33.github.io/Al-Jameel-App/Logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Al-Jameel Janazah Services</title>
+
+  <!-- PWA Setup -->
+  <link rel="manifest" href="https://kakallahi33.github.io/Al-Jameel-App/manifest.json">
+  <meta name="theme-color" id="meta-theme-color" content="#1a0b2e">
+  <link rel="icon" type="image/jpeg" href="https://kakallahi33.github.io/Al-Jameel-App/Logo.jpg">
+  <link rel="apple-touch-icon" href="https://kakallahi33.github.io/Al-Jameel-App/Logo.jpg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #120c1f;
+      --bg-card: #1d152a;
+      --header-bg: #1a0b2e;
+      --gold: #d4af37;
+      --text-main: #ffffff;
+      --text-sub: #b2a8c3;
+      --border-color: rgba(255, 255, 255, 0.12);
+      
+      --card-green: #00b894;
+      --card-orange: #f39c12;
+      --card-blue: #0984e3;
+      --card-purple: #a29bfe;
+      --red-alert: #d63031;
+      --green-whatsapp: #25d366;
+    }
+
+    .light-theme {
+      --bg-main: #f4f2f7;
+      --bg-card: #ffffff;
+      --header-bg: #2e174d;
+      --gold: #b38f24;
+      --text-main: #1c1b1f;
+      --text-sub: #554f63;
+      --border-color: rgba(0, 0, 0, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      margin: 0;
+      padding-bottom: 90px;
+      line-height: 1.5;
+    }
+
+    .brand-header {
+      background-color: var(--header-bg);
+      text-align: center;
+      padding: 20px 12px 10px 12px;
+    }
+
+    .brand-header img {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      object-fit: cover;
+    }
+
+    .brand-header h1 {
+      margin: 8px 0 2px 0;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .brand-header p {
+      margin: 0;
+      font-size: 0.72rem;
+      color: var(--gold);
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .header-divider {
+      height: 1px;
+      background-color: var(--gold);
+      opacity: 0.6;
+      margin-top: 15px;
+    }
+
+    .container {
+      padding: 12px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .top-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+      margin-bottom: 16px;
+    }
+
+    .ctrl-btn, select.ctrl-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 8px 6px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    select.ctrl-btn {
+      padding-right: 14px;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      background-position: right 8px top 50%;
+      background-size: 8px auto;
+    }
+
+    .ctrl-btn.active-pill {
+      background: var(--gold);
+      color: #000000;
+      border-color: var(--gold);
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 14px;
+      border: 1px solid var(--border-color);
+    }
+
+    .arabic-header {
+      font-family: 'Amiri', serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 6px;
+      direction: rtl;
+    }
+
+    .welcome-card { text-align: center; }
+    .welcome-card h2 { margin: 4px 0 6px 0; font-size: 1.4rem; font-weight: 800; }
+    .welcome-card p { color: var(--text-sub); font-size: 0.85rem; font-style: italic; margin: 0; }
+
+    .emergency-workflow-btn {
+      width: 100%;
+      background: linear-gradient(180deg, #e74c3c 0%, #c0392b 100%);
+      color: #ffffff;
+      border: none;
+      padding: 16px;
+      font-weight: 800;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin-bottom: 14px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(214, 48, 49, 0.4);
+      line-height: 1.3;
+    }
+
+    .grid-2x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .grid-card {
+      background: var(--bg-card);
+      border-radius: 14px;
+      padding: 22px 12px;
+      text-align: center;
+      cursor: pointer;
+      border: 2px solid transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: transform 0.1s ease;
+    }
+
+    .grid-card:active { transform: scale(0.97); }
+    .grid-card.green { border-color: #00b894; }
+    .grid-card.orange { border-color: #f39c12; }
+    .grid-card.blue { border-color: #0984e3; }
+    .grid-card.purple { border-color: #a29bfe; }
+
+    .square-icon { width: 32px; height: 32px; border-radius: 8px; }
+    .square-icon.green { background-color: #00b894; }
+    .square-icon.orange { background-color: #f39c12; }
+    .square-icon.blue { background-color: #0984e3; }
+    .square-icon.purple { background-color: #a29bfe; }
+
+    .grid-card span { font-weight: 700; font-size: 0.95rem; color: var(--text-main); }
+
+    .emergency-call-card {
+      border: 1px solid rgba(214, 48, 49, 0.5);
+      text-align: center;
+      background: rgba(214, 48, 49, 0.05);
+      padding: 18px;
+    }
+
+    .emergency-call-card h3 {
+      color: #ff4d4d;
+      margin: 0 0 6px 0;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .phone-number {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+    }
+
+    .call-btn-red {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: linear-gradient(180deg, #e74c3c 0%, #c0392b 100%);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 800;
+      padding: 12px 0;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .whatsapp-btn-green {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: #25d366;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 800;
+      padding: 12px 0;
+      border-radius: 10px;
+      font-size: 0.95rem;
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active-tab { display: block; }
+
+    .lang-content { display: none; }
+    .lang-content.active-lang { display: block; }
+
+    .badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #000;
+      font-weight: bold;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      margin-bottom: 8px;
+    }
+
+    ul, ol { padding-left: 18px; margin: 6px 0; }
+    li { margin-bottom: 6px; color: var(--text-sub); font-size: 0.88rem; }
+
+    .action-btn {
+      display: inline-block;
+      padding: 8px 12px;
+      background-color: var(--gold);
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      margin-top: 6px;
+    }
+
+    .action-btn.map {
+      background-color: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      margin-left: 6px;
+    }
+
+    .btn-back-main {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .gold-badge {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.2);
+      color: var(--gold);
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .checklist-container { margin: 15px 0; }
+
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      font-size: 0.92rem;
+    }
+
+    .checklist-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--gold);
+      cursor: pointer;
+    }
+
+    .btn-export-pdf {
+      width: 100%;
+      background: var(--gold);
+      color: #000000;
+      border: none;
+      padding: 13px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .stat-number { font-size: 1.5rem; font-weight: 800; color: var(--gold); }
+    .stat-label { font-size: 0.75rem; color: var(--text-sub); margin-top: 2px; }
+
+    .card-title-gold {
+      color: var(--gold);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+
+    th, td {
+      border: 1px solid var(--border-color);
+      padding: 8px;
+      font-size: 0.8rem;
+      text-align: left;
+    }
+
+    th { color: var(--gold); background: rgba(212, 175, 55, 0.15); }
+    td { color: var(--text-sub); }
+
+    .cost-box {
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 12px;
+      margin: 10px 0;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--header-bg);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0 8px 0;
+      z-index: 1000;
+    }
+
+    .nav-item {
+      color: var(--text-sub);
+      text-decoration: none;
+      font-size: 0.68rem;
+      text-align: center;
+      flex: 1;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .nav-item.active { color: var(--gold); font-weight: 700; }
+    .nav-item .nav-icon { font-size: 1.25rem; line-height: 1; }
+  </style>
+</head>
+<body>
+
+  <header class="brand-header">
+    <img src="https://kakallahi33.github.io/Al-Jameel-App/Logo.jpg" alt="Al-Jameel Logo">
+    <h1>Al-Jameel Janazah Services</h1>
+    <p>YOUR JANAZAH COMPANION</p>
+    <div class="header-divider"></div>
+  </header>
+
+  <div class="container">
+
+    <div class="top-controls">
+      <select id="langSelect" class="ctrl-btn" onchange="setGlobalLanguage(this.value)">
+        <option value="en">English 🇬🇧</option>
+        <option value="sw">Swahili 🇰🇪</option>
+        <option value="so">Somali 🇸🇴</option>
+      </select>
+
+      <button id="genderBtn" class="ctrl-btn active-pill" onclick="toggleGender()">👨 Male Version</button>
+      <button class="ctrl-btn" onclick="toggleTheme()">🌙 Theme</button>
+    </div>
+
+    <!-- 1. HOME TAB -->
+    <div id="tab-home" class="tab-content active-tab">
+      
+      <div class="card welcome-card">
+        <div class="arabic-header">السلام عليكم ورحمة الله وبركاته</div>
+        <h2>Welcome to Al-Jameel</h2>
+        <p id="home-subtitle">"Serving the Ummah with dignity, compassion and knowledge."</p>
+      </div>
+
+      <button class="emergency-workflow-btn" onclick="switchTab('services')" id="home-emergency-btn">
+        ⚠️ A DEATH HAS OCCURRED (START WORKFLOW)
+      </button>
+
+      <div class="grid-2x2">
+        <div class="grid-card green" onclick="openServiceSection('sec-ghusl')">
+          <div class="square-icon green"></div>
+          <span id="grid-ghusl-txt">Ghusl Guide</span>
+        </div>
+
+        <div class="grid-card orange" onclick="openServiceSection('sec-kafan')">
+          <div class="square-icon orange"></div>
+          <span id="grid-kafan-txt">Kafan Guide</span>
+        </div>
+
+        <div class="grid-card blue" onclick="openServiceSection('sec-janazah')">
+          <div class="square-icon blue"></div>
+          <span id="grid-janazah-txt">Janazah Prayer</span>
+        </div>
+
+        <div class="grid-card purple" onclick="openServiceSection('sec-burial')">
+          <div class="square-icon purple"></div>
+          <span id="grid-burial-txt">Burial Guide</span>
+        </div>
+      </div>
+
+      <div class="card emergency-call-card">
+        <h3 id="emergency-header-txt">EMERGENCY JANAZAH ASSISTANCE</h3>
+        <div class="phone-number">+254 726 538448</div>
+        <a href="tel:+254726538448" class="call-btn-red" id="call-now-btn-txt">🚨 CALL EMERGENCY NOW</a>
+        <a href="https://wa.me/254726538448" class="whatsapp-btn-green" target="_blank">💬 WhatsApp Support</a>
+      </div>
+
+    </div>
+
+    <!-- 2. SERVICES TAB -->
+    <div id="tab-services" class="tab-content">
+      
+      <!-- ENGLISH CONTENT -->
+      <div id="lang-en" class="lang-content active-lang">
+        
+        <div class="card" id="sec-ghusl">
+          <span class="badge">STEP 1</span>
+          <h2>💧 Ghusl (Step-by-Step Ritual Washing Guide)</h2>
+          <p style="color: var(--text-sub); font-size: 0.85rem;">
+            Ghusl is the obligatory full-body ritual bath given to a deceased Muslim. It must be performed with utmost gentleness, respect, and privacy. <span id="gender-note" style="color: var(--gold); font-weight: bold;">(Male Rules: Performed by trustworthy men)</span>
+          </p>
+          <ol>
+            <li><strong>Privacy & Awrah:</strong> Place a cloth over the body from the navel to the knees. The private areas (Awrah) must remain covered at all times during washing.</li>
+            <li><strong>Cleaning Private Areas:</strong> The washer wears gloves and cleans the deceased's private areas gently with water without looking directly at the Awrah.</li>
+            <li><strong>Perform Wudu (Ablution):</strong> Perform standard Wudu for the deceased (wipe teeth and nostrils gently with wet cotton; do not pour water into nose or mouth; wash face, arms, wipe head, and wash feet).</li>
+            <li><strong>Washing the Body (3, 5, or 7 times):</strong> Wash with warm water mixed with Sidr (lote leaves) or mild soap. Start with the right side of the head and neck, then upper right body, upper left body, lower right body, and lower left body. Turn body onto left side to wash the back right, then onto right side to wash the back left.</li>
+            <li><strong>Final Rinse:</strong> The final rinse must contain a small amount of Camphor or non-alcoholic scent. Dry the body gently with a clean towel.</li>
+          </ol>
+        </div>
+
+        <div class="card" id="sec-kafan">
+          <span class="badge">STEP 2</span>
+          <h2>📜 Kafan (Step-by-Step Shrouding Guide)</h2>
+          <p style="color: var(--text-sub); font-size: 0.85rem;">
+            Shrouding involves wrapping the clean, dried body in simple, unstitched white cotton sheets.
+          </p>
+          <ol>
+            <li><strong id="kafan-rule-title">Requirement for Men:</strong> <span id="kafan-rule-desc">3 plain unstitched white sheets layered over each other. (For women, 5 garments: inner shirt/lifafah, head veil, waist wrap, and 2 outer sheets).</span></li>
+            <li><strong>Applying Fragrance (Attar):</strong> Apply non-alcoholic Attar/perfume to the prostration points of the deceased (forehead, nose, hands, knees, and feet).</li>
+            <li><strong>Wrapping:</strong> Fold the left side of the top sheet over the body, then the right side over the left. Repeat for all layers.</li>
+            <li><strong>Securing:</strong> Tie strips of cloth above the head, around the waist, and below the feet. (These strips are untied inside the grave before burial).</li>
+          </ol>
+        </div>
+
+        <div class="card" id="sec-janazah">
+          <span class="badge">STEP 3</span>
+          <h2>🤲 Swalatul Janazah (Funeral Prayer Guide)</h2>
+          <p style="color: var(--text-sub); font-size: 0.85rem;">
+            A communal obligation (Fard Kifayah) performed entirely while standing. There is <strong>NO Ruku (bowing)</strong> and <strong>NO Sujood (prostration)</strong>.
+          </p>
+          <ol>
+            <li><strong>1st Takbeer ("Allahu Akbar"):</strong> Raise hands, place them on the chest, and silently recite <em>Surah Al-Fatiha</em>.</li>
+            <li><strong>2nd Takbeer ("Allahu Akbar"):</strong> Say Takbeer and recite <em>Durood-e-Ibrahim</em> (the blessing upon Prophet Muhammad ﷺ as recited in regular prayer).</li>
+            <li><strong>3rd Takbeer ("Allahu Akbar"):</strong> Say Takbeer and make sincere Dua for the deceased asking Allah for mercy, forgiveness, and Paradise.</li>
+            <li><strong>4th Takbeer ("Allahu Akbar"):</strong> Say Takbeer, pause briefly, then perform Tasleem to the right ("Assalamu Alaikum wa Rahmatullah") to conclude the prayer.</li>
+          </ol>
+        </div>
+
+        <div class="card" id="sec-burial">
+          <span class="badge">STEP 4</span>
+          <h2>🪦 Burial Practices (Step-by-Step Guide)</h2>
+          <p style="color: var(--text-sub); font-size: 0.85rem;">Lowering the deceased into the grave with dignity and honor.</p>
+          <ol>
+            <li><strong>Lowering into Grave:</strong> Male relatives lower the body into the grave feet-first or from the side while saying: <em>"Bismillahi wa 'ala millati Rasoolillah"</em>.</li>
+            <li><strong>Qibla Positioning:</strong> Place the body on its right side facing towards Makkah (Qibla). Untie the cloth strips at the head and feet.</li>
+            <li><strong>Closing Grave & Supplication:</strong> Cover the recess with soil or planks. Attendees pour 3 handfuls of soil into the grave. After filling, stand at the grave and pray for the deceased's steadfastness and forgiveness.</li>
+          </ol>
+        </div>
+
+      </div>
+
+      <!-- SWAHILI CONTENT -->
+      <div id="lang-sw" class="lang-content">
+        <div class="card">
+          <span class="badge">HATUA YA 1</span>
+          <h2>💧 Ghusl (Hatua kwa Hatua za Osho la Maiti)</h2>
+          <p style="color: var(--text-sub); font-size: 0.85rem;">Osho la maiti hufanywa kwa heshima kubwa. Sehemu za siri (Uchi) zibaki zimefunikwa wakati wote wa kuosha.</p>
+          <ol>
+            <li>Kufunika uchi wa marehemu kuanzia kitovu hadi magotini.</li>
+            <li>Kutawaza (Wudhu) marehemu bila kuingiza maji puani au mdomoni.</li>
+            <li>Kuosha mwili mara 3, 5, au 7 kwa maji ya vuguvugu na Sidr (majani ya mkunazi) na Kafuri mwishoni.</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <span class="badge">HATUA YA 2</span>
+          <h2>📜 Kafan (Hatua za Kuvika Sanda)</h2>
+          <p style="color: var(--text-sub); font-size: 0.85rem;">Kumfunika marehemu kwa vitambaa vyeupe visivyoshonwa. Wanaume sanda 3, Wanawake sanda 5.</p>
+        </div>
+
+        <div class="card">
+          <span class="badge">HATUA YA 3</span>
+          <h2>🤲 Swalatul Janazah (Mwongozo wa Swala ya Jeneza)</h2>
+          <p style="color: var(--text-sub); font-size: 0.85rem;">Swala inayofanywa mmesimama pekee. Haina Rukuu wala Sujood. Ina Takbira 4 na Salama moja.</p>
+        </div>
+
+        <div class="card">
+          <span class="badge">HATUA YA 4</span>
+          <h2>🪦 Mazishi</h2>
+          <p style="color: var(--text-sub); font-size: 0.85rem;">Kumhifadhi marehemu kaburini akiwa amelalia upande wa kulia kuelekea Qibla.</p>
+        </div>
+      </div>
+
+      <!-- SOMALI CONTENT -->
+      <div id="lang-so" class="lang-content">
+        <div class="card">
+          <span class="badge">TALLAABADA 1</span>
+          <h2>💧 Dhaqida Maydka (Ghusl)</h2>
+          <p style="color: var(--text-sub); font-size: 0.85rem;">Maydka oo si xaq dhowr leh loogu dhaqo biyaha iyadoo Cawrada la asturayo.</p>
+        </div>
+
+        <div class="card">
+          <span class="badge">TALLAABADA 2</span>
+          <h2>📜 Kafanitaanka (Kafan)</h2>
+          <p style="color: var(--text-sub); font-size: 0.85rem;">Maydka oo lagu duobo dhar cad oo aan toolayn. Raga 3 go'an, Haweenka 5 go'an.</p>
+        </div>
+
+        <div class="card">
+          <span class="badge">TALLAABADA 3</span>
+          <h2>🤲 Salaatu Janaaza</h2>
+          <p style="color: var(--text-sub); font-size: 0.85rem;">Salaad taag ah oo 4 Takbiirood leh oo aan lahayn Rukuuc iyo Sujuud.</p>
+        </div>
+
+        <div class="card">
+          <span class="badge">TALLAABADA 4</span>
+          <h2>🪦 Aaska (Burial)</h2>
+          <p style="color: var(--text-sub); font-size: 0.85rem;">Maydka oo la dhigo qabriga dhanka midig oo loo jeediyo Qiblada.</p>
+        </div>
+      </div>
+
+      <!-- LEGAL DOCUMENTS -->
+      <div class="card">
+        <h2>📄 Complete Required Burial Documents (Kenya)</h2>
+        <p style="color: var(--text-sub); font-size: 0.82rem;">Ensure you have all the following legal documents before proceeding to the cemetery:</p>
+        <table>
+          <tr><th>Document Name</th><th>Issuing Authority</th><th>Purpose & Requirement</th></tr>
+          <tr><td><strong>1. Death Notification (Form D1)</strong></td><td>Hospital / Attending Doctor</td><td>Medical certification of death. Mandatory if death occurred in hospital.</td></tr>
+          <tr><td><strong>2. Chief's Letter / Police Abstract</strong></td><td>Area Chief / Police Station</td><td>Mandatory for home deaths to confirm cause and rule out foul play.</td></tr>
+          <tr><td><strong>3. Burial Permit</strong></td><td>Huduma Namba Centre / City Hall</td><td><strong>MANDATORY</strong> legal authorization required by all cemeteries to permit burial.</td></tr>
+          <tr><td><strong>4. ID Copy of Deceased & Applicant</strong></td><td>National Registration Bureau</td><td>For official registration and record-keeping at City Hall / Cemetery office.</td></tr>
+        </table>
+      </div>
+
+      <!-- GHUSL FACILITIES -->
+      <div class="card">
+        <h2>💧 Nairobi Ghusl (Washing) Facilities</h2>
+        <p style="color: var(--text-sub); font-size: 0.82rem;">Facilities equipped with dedicated Ghusl washing halls in Nairobi:</p>
+        
+        <p><strong>1. Pangani Ghusl Hall</strong><br>
+        📍 Pangani, Nairobi<br>
+        <a href="tel:+254726538448" class="action-btn">📞 Call Dispatch</a>
+        <a href="https://maps.google.com/?q=Pangani+Mosque+Nairobi" class="action-btn map" target="_blank">🗺️ Map</a></p>
+        
+        <p><strong>2. Masjid Noor Ghusl Center</strong><br>
+        📍 South C, Nairobi<br>
+        <a href="tel:+254724674477" class="action-btn">📞 Call Kokni Assoc: +254 724 674477</a>
+        <a href="https://maps.google.com/?q=Masjid+Noor+South+C+Nairobi" class="action-btn map" target="_blank">🗺️ Map</a></p>
+
+        <p><strong>3. Parklands Mosque Ghusl Hall</strong><br>
+        📍 Parklands, Nairobi<br>
+        <a href="tel:+254796411482" class="action-btn">📞 Call Sheikh Salman: +254 796 411482</a>
+        <a href="https://maps.google.com/?q=Parklands+Mosque+Nairobi" class="action-btn map" target="_blank">🗺️ Map</a></p>
+      </div>
+
+      <!-- CEMETERIES DIRECTORY -->
+      <div class="card">
+        <h2>🪦 Nairobi Muslim Cemeteries Directory</h2>
+        <p style="color: var(--text-sub); font-size: 0.82rem;">Active Muslim burial grounds in Nairobi with direct phone contacts:</p>
+        
+        <p><strong>1. Lang'ata Muslim Cemetery</strong><br>
+        📍 Lang'ata Road, Nairobi<br>
+        📞 Contacts: +254 715 818799 (Hussein Mukadam) / +254 796 411482<br>
+        <a href="tel:+254715818799" class="action-btn">📞 Call Cemetery Office</a>
+        <a href="https://maps.google.com/?q=Langata+Cemetery+Nairobi" class="action-btn map" target="_blank">🗺️ Map</a></p>
+
+        <p><strong>2. Kariokor Muslim Cemetery</strong><br>
+        📍 Kinyanjui / Quarry Road, Kariokor, Nairobi<br>
+        📞 Contacts: +254 724 674477 (Abdulaziz Mukadam) / +254 716 468878<br>
+        <a href="tel:+254724674477" class="action-btn">📞 Call Facility</a>
+        <a href="https://maps.google.com/?q=Kariokor+Muslim+Cemetery+Nairobi" class="action-btn map" target="_blank">🗺️ Map</a></p>
+
+        <p><strong>3. Pangani Muslim Cemetery</strong><br>
+        📍 Pangani, Ring Road, Nairobi<br>
+        📞 Contacts: +254 720 911111 (Ladies Subcommittee) / +254 726 538448<br>
+        <a href="tel:+254720911111" class="action-btn">📞 Call Caretaker</a>
+        <a href="https://maps.google.com/?q=Pangani+Cemetery+Nairobi" class="action-btn map" target="_blank">🗺️ Map</a></p>
+      </div>
+
+      <button class="btn-back-main" onclick="switchTab('home')">← Back to Main</button>
+
+    </div>
+
+    <!-- 3. KIT TAB -->
+    <div id="tab-kit" class="tab-content">
+      <div class="card">
+        <span class="gold-badge" id="kit-badge">MALE KIT CHECKLIST</span>
+        <h3 class="card-title-gold">🧰 Interactive Janazah Kit Checklist</h3>
+        <p style="color: var(--text-sub); font-size: 0.85rem; margin-top: 4px; margin-bottom: 12px;">
+          Check off items as you prepare the burial materials:
+        </p>
+
+        <div class="checklist-container">
+          <label class="checklist-item">
+            <input type="checkbox"> <span id="sheet-desc">3 Large Shroud Cloths (Liffafah)</span>
+          </label>
+          <label class="checklist-item">
+            <input type="checkbox"> Sidr (Lote tree) powder
+          </label>
+          <label class="checklist-item">
+            <input type="checkbox"> Camphor (Non-alcoholic)
+          </label>
+          <label class="checklist-item">
+            <input type="checkbox"> Non-alcoholic Perfume / Itr
+          </label>
+          <label class="checklist-item">
+            <input type="checkbox"> Cotton rolls & Gauze pads
+          </label>
+          <label class="checklist-item">
+            <input type="checkbox"> Disposable Wash Gloves & Soap
+          </label>
+          <label class="checklist-item">
+            <input type="checkbox"> Scissors & Towels
+          </label>
+        </div>
+
+        <button class="btn-export-pdf" onclick="window.print()">
+          📄 Export Checklist as PDF Document
+        </button>
+
+        <button class="btn-back-main" onclick="switchTab('home')">← Back to Main</button>
+      </div>
+    </div>
+
+    <!-- 4. QIBLAH TAB -->
+    <div id="tab-qiblah" class="tab-content">
+      <div class="card" style="text-align: center;">
+        <h3 class="card-title-gold" style="justify-content: center;">🧭 Qiblah Direction Finder</h3>
+        <p style="color: var(--text-sub); font-size: 0.88rem;">
+          Align the deceased towards Makkah (Qibla: ~282° NW from Kenya).
+        </p>
+        <div style="font-size: 3.5rem; margin: 20px 0;">🧭</div>
+        <button class="btn-back-main" onclick="switchTab('home')">← Back to Main</button>
+      </div>
+    </div>
+
+    <!-- 5. DONATE TAB -->
+    <div id="tab-donate" class="tab-content">
+      <div class="card">
+        <h2>💚 Sponsor a Janazah Kit</h2>
+        <p style="color: var(--text-sub); font-size: 0.85rem;">Many needy families in Kenya struggle to afford shrouding materials during sudden bereavements. Your donation directly funds complete Janazah shroud kits.</p>
+        
+        <div class="cost-box">
+          <h3 style="margin:0 0 4px 0; color:var(--gold);">💰 Full Janazah Kit Cost</h3>
+          <p style="margin:0; font-size:1.1rem; font-weight:bold;">KES 3,500 (approx. $27 USD)</p>
+          <p style="margin:4px 0 0 0; font-size:0.78rem; color:var(--text-sub);">Includes: 3-5 cotton sheets, camphor, sidr, attar, gloves, cotton wool, and transportation to the family.</p>
+        </div>
+
+        <div style="background: rgba(212, 175, 55, 0.15); padding: 14px; border-radius: 8px; text-align: center; margin-top: 10px;">
+          <p style="margin: 0; font-weight: bold; color: var(--gold);">M-PESA TILL NUMBER</p>
+          <p style="font-size: 1.8rem; font-weight: bold; margin: 4px 0; letter-spacing: 2px;">3701594</p>
+          <p style="margin: 0; font-size: 0.78rem; color: var(--text-sub);">Account Name: Al-Jameel Services</p>
+        </div>
+
+        <div style="margin-top: 15px; font-size: 0.85rem;">
+          <h3 style="color: var(--gold); margin-bottom: 6px;">📞 Support & Verification Contacts</h3>
+          <p>For donation receipts or direct inquiries:<br>
+          📞 Phone: <a href="tel:+254726538448" style="color:var(--gold);">+254 726 538448</a><br>
+          📍 Main Office: South C / Parklands, Nairobi, Kenya</p>
+        </div>
+        <button class="btn-back-main" onclick="switchTab('home')">← Back to Main</button>
+      </div>
+    </div>
+
+    <!-- 6. ABOUT TAB -->
+    <div id="tab-about" class="tab-content">
+      <div class="card">
+        <h3 class="card-title-gold">ℹ️ About Al-Jameel Janazah Services</h3>
+        <p style="color: var(--text-sub); font-size: 0.88rem; line-height: 1.5; margin-bottom: 12px;">
+          Al-Jameel is a community-driven initiative dedicated to fulfilling the communal obligation (Fard Kifayah) of Janazah with Islamic dignity, compassion, and speed.
+        </p>
+        <p style="color: var(--text-sub); font-size: 0.88rem; line-height: 1.5; margin: 0;">
+          Our mission is to educate families, support needy communities with free burial supplies, and ensure every Muslim receives a proper Islamic farewell regardless of financial status.
+        </p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">235+</div>
+          <div class="stat-label">Janazah Kits Distributed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Emergency Hotline</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title-gold">📞 Contact & Support Details</h3>
+        <p style="color: #ffffff; font-size: 0.88rem; margin: 6px 0;"><strong>Hotline:</strong> +254 726 538448</p>
+        <p style="color: #ffffff; font-size: 0.88rem; margin: 6px 0;"><strong>M-PESA Till:</strong> 3701594</p>
+        <p style="color: #ffffff; font-size: 0.88rem; margin: 6px 0;"><strong>Location:</strong> Nairobi / Kiambu, Kenya</p>
+        <p style="color: #ffffff; font-size: 0.88rem; margin: 6px 0;"><strong>Services:</strong> 24 Hours / 7 Days a Week</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Navigation Bar -->
+  <nav class="bottom-nav">
+    <div class="nav-item active" onclick="switchTab('home', this)">
+      <span class="nav-icon">🏠</span>
+      <span>Home</span>
+    </div>
+    <div class="nav-item" onclick="switchTab('services', this)">
+      <span class="nav-icon">🛠️</span>
+      <span>Services</span>
+    </div>
+    <div class="nav-item" onclick="switchTab('kit', this)">
+      <span class="nav-icon">🧰</span>
+      <span>Kit</span>
+    </div>
+    <div class="nav-item" onclick="switchTab('qiblah', this)">
+      <span class="nav-icon">🧭</span>
+      <span>Qiblah</span>
+    </div>
+    <div class="nav-item" onclick="switchTab('donate', this)">
+      <span class="nav-icon">💚</span>
+      <span>Donate</span>
+    </div>
+    <div class="nav-item" onclick="switchTab('about', this)">
+      <span class="nav-icon">ℹ️</span>
+      <span>About</span>
+    </div>
+  </nav>
+
+  <script>
+    let isMale = true;
+
+    const translations = {
+      en: {
+        subtitle: '"Serving the Ummah with dignity, compassion and knowledge."',
+        emergencyBtn: '⚠️ A DEATH HAS OCCURRED (START WORKFLOW)',
+        ghuslTxt: 'Ghusl Guide',
+        kafanTxt: 'Kafan Guide',
+        janazahTxt: 'Janazah Prayer',
+        burialTxt: 'Burial Guide',
+        emergencyHeader: 'EMERGENCY JANAZAH ASSISTANCE',
+        callBtn: '🚨 CALL EMERGENCY NOW'
+      },
+      sw: {
+        subtitle: '"Kuitumikia Ummah kwa heshima, huruma na elimu."',
+        emergencyBtn: '⚠️ MSIBA UMETOKEA (ANZA UTARATIBU)',
+        ghuslTxt: 'Osho la Maiti',
+        kafanTxt: 'Vika Sanda',
+        janazahTxt: 'Swala ya Jeneza',
+        burialTxt: 'Mwongozo Mazishi',
+        emergencyHeader: 'MSAADA WA DHARURA WA JANAZAH',
+        callBtn: '🚨 PIGA SIMU SASA HVIVYO'
+      },
+      so: {
+        subtitle: '"U phụcaynta Ummadda si sharaf, naxariis iyo aqoon leh."',
+        emergencyBtn: '⚠️ WAA GEERI (BILAAB HABKA)',
+        ghuslTxt: 'Dhaqida Maydka',
+        kafanTxt: 'Kafanitaanka',
+        janazahTxt: 'Salaatu Janaaza',
+        burialTxt: 'Haddiyada Aaska',
+        emergencyHeader: 'SAACIDAADA DEGDEG AH EE JANAAZADA',
+        callBtn: '🚨 WAC HADA DEGDEG'
+      }
+    };
+
+    function switchTab(tabId, navEl) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active-tab'));
+      document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+      
+      const targetTab = document.getElementById('tab-' + tabId);
+      if(targetTab) targetTab.classList.add('active-tab');
+      
+      if(navEl) {
+        navEl.classList.add('active');
+      } else {
+        const navItems = document.querySelectorAll('.nav-item');
+        const tabMap = { 'home': 0, 'services': 1, 'kit': 2, 'qiblah': 3, 'donate': 4, 'about': 5 };
+        if(tabMap[tabId] !== undefined) navItems[tabMap[tabId]].classList.add('active');
+      }
+      window.scrollTo(0, 0);
+    }
+
+    function openServiceSection(sectionId) {
+      switchTab('services', document.querySelectorAll('.nav-item')[1]);
+      const targetElement = document.getElementById(sectionId);
+      if(targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function setGlobalLanguage(lang) {
+      const t = translations[lang] || translations.en;
+      document.getElementById('home-subtitle').innerText = t.subtitle;
+      document.getElementById('home-emergency-btn').innerText = t.emergencyBtn;
+      document.getElementById('grid-ghusl-txt').innerText = t.ghuslTxt;
+      document.getElementById('grid-kafan-txt').innerText = t.kafanTxt;
+      document.getElementById('grid-janazah-txt').innerText = t.janazahTxt;
+      document.getElementById('grid-burial-txt').innerText = t.burialTxt;
+      document.getElementById('emergency-header-txt').innerText = t.emergencyHeader;
+      document.getElementById('call-now-btn-txt').innerText = t.callBtn;
+
+      document.querySelectorAll('.lang-content').forEach(sec => sec.classList.remove('active-lang'));
+      const activeContent = document.getElementById('lang-' + lang);
+      if(activeContent) activeContent.classList.add('active-lang');
+    }
+
+    function toggleGender() {
+      isMale = !isMale;
+      const btn = document.getElementById('genderBtn');
+      const note = document.getElementById('gender-note');
+      const title = document.getElementById('kafan-rule-title');
+      const desc = document.getElementById('kafan-rule-desc');
+      const badge = document.getElementById('kit-badge');
+      const sheetDesc = document.getElementById('sheet-desc');
+
+      if(isMale) {
+        btn.innerHTML = '👨 Male Version';
+        if(note) note.innerText = "(Male Rules: Performed by trustworthy men)";
+        if(title) title.innerText = "Requirement for Men:";
+        if(desc) desc.innerText = "3 plain unstitched white sheets layered over each other.";
+        if(badge) badge.innerText = 'MALE KIT CHECKLIST';
+        if(sheetDesc) sheetDesc.innerText = '3 Large Shroud Cloths (Liffafah)';
+      } else {
+        btn.innerHTML = '👩 Female Version';
+        if(note) note.innerText = "(Female Rules: Performed by trustworthy women)";
+        if(title) title.innerText = "Requirement for Women:";
+        if(desc) desc.innerText = "5 garments: inner shirt/lifafah, head veil, waist wrap, and 2 outer sheets.";
+        if(badge) badge.innerText = 'FEMALE KIT CHECKLIST';
+        if(sheetDesc) sheetDesc.innerText = '5 Shroud Garments (Liffafah, Khimar, Cut Shirt, etc.)';
+      }
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('light-theme');
+    }
+  </script>
+
+</body>
+</html>
